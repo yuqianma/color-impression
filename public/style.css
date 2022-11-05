@@ -1,5 +1,48 @@
-#captured-color {
-	width: 100px;
-	height: 100px;
-	border: 1px solid #ccc;
+body {
+	margin: 0;
+}
+
+.view {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+.view {
+	display: none;
+}
+
+.active {
+	display: flex;
+}
+
+.container {
+	position: relative;
+}
+
+#camera-video {
+	background-color: rgba(0, 0, 0, 0.1);
+	width: 80vw;
+	height: 80vw; /* 1:1 */
+	/* object-fit: contain; */
+	border-radius: 40%;
+}
+
+#focused-color {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 4rem;
+	height: 4rem;
+	border: 2px solid #ccc;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 4rem;
+	color: #fff;
 }
