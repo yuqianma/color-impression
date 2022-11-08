@@ -2,6 +2,10 @@ body {
 	margin: 0;
 }
 
+h1 {
+	color: #aaa;
+}
+
 .view {
 	width: 100vw;
 	height: 100vh;
@@ -23,6 +27,11 @@ body {
 
 .container {
 	position: relative;
+}
+
+#color-clock .container {
+	width: 100vw;
+	height: 100vw;
 }
 
 #camera-video {

@@ -6,11 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Color Impression</title>
 	<link rel="stylesheet" href="style.css">
+	<script src="https://cdn.jsdelivr.net/npm/d3@7.6.1/dist/d3.min.js"></script>
 </head>
 <body>
 <div id="color-clock" class="view active">
-	color-clock
-	<button id="take-color">Take Color</button>
+	<h1>color-clock</h1>
+	<div class="container">
+		<svg id="clock-chart"></svg>
+	</div>
 </div>
 <div id="camera-eyedropper" class="view">
 	<div class="container">
@@ -18,6 +21,6 @@
 		<div id="focused-color">Take</div>
 	</div>
 </div>
-<script src="index.js"></script>
+<script type="module" src="index.js"></script>
 </body>
 </html>
