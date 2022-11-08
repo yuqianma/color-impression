@@ -1,5 +1,10 @@
 body {
 	margin: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
 h1 {
@@ -9,13 +14,15 @@ h1 {
 .view {
 	width: 100vw;
 	height: 100vh;
+	max-width: 500px;
 	display: flex;
 	flex-flow: column;
 	justify-content: center;
 	align-items: center;
-	position: fixed;
-	top: 0;
-	left: 0;
+	border: 1px solid #ccc;
+	/* position: fixed; */
+	/* top: 0; */
+	/* left: 0; */
 }
 .view {
 	display: none;
@@ -30,15 +37,16 @@ h1 {
 }
 
 #color-clock .container {
-	width: 100vw;
-	height: 100vw;
+	width: 100%;
+	height: auto;
 }
 
 #camera-video {
 	background-color: rgba(0, 0, 0, 0.1);
-	width: 80vw;
-	height: 80vw; /* 1:1 */
-	/* object-fit: contain; */
+	width: 80%;
+	height: auto;
+	margin: 10%;
+	object-fit: contain;
 	border-radius: 40%;
 }
 
