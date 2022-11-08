@@ -18,6 +18,7 @@ let video = null;
 let canvas = null;
 let photo = null;
 let startbutton = null;
+let pingbutton = null;
 
 function showViewLiveResultButton() {
 	if (window.self !== window.top) {
@@ -42,6 +43,7 @@ function startup() {
 	canvas = document.getElementById("canvas");
 	photo = document.getElementById("photo");
 	startbutton = document.getElementById("startbutton");
+  pingbutton = document.getElementById("pingbutton");
 
 	navigator.mediaDevices
 		.getUserMedia({ video: true, audio: false })
@@ -85,6 +87,15 @@ function startup() {
 		false
 	);
 
+  pingbutton.addEventListener(
+    "click",
+    (ev) => {
+      ping();
+      ev.preventDefault();
+    },
+    false
+  );
+
 	clearphoto();
 }
 
@@ -123,9 +134,34 @@ function takepicture() {
 		const pixel = context.getImageData(sx, sy, sw, sh);
 		// console.log(pixel);
 		document.getElementById('captured-color').style.backgroundColor = `rgb(${pixel.data[0]}, ${pixel.data[1]}, ${pixel.data[2]})`;
+
+		// send color to server
+		const requestOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ color: [pixel.data[0], pixel.data[1], pixel.data[2]] })
+		};
+	
+		fetch('http://localhost:3000/data', requestOptions)
+			.then((response) => response.json())
+			.then((data) => console.log(data));
+
 	} else {
 		clearphoto();
 	}
+}
+
+function ping() {
+  console.log("pinging");
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ color: 'color-from-client' })
+  };
+
+  fetch('http://localhost:3000/data', requestOptions)
+    .then((response) => response.json())
+    .then((data) => console.log(data));
 }
 
 startup();

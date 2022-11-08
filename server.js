@@ -31,14 +31,26 @@ const port = 3000
 
 
 app.use(express.static('public'))
+app.use(express.json())
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '/index.html'));
 });
 
-app.get('/data', async function(req, res) {
-  await saveColor({ color: "Test Color Code", date: "now"});
+
+app.post('/data', async function(req, res) {
+  let bodyParams = await req.body;
+  console.log(`Request Body: ${bodyParams.color}`);
+  let colorData = {
+    currentTime: new Date(),
+    color: bodyParams.color,
+  }
+  await saveColor(colorData);
   res.send('get data');
+});
+
+app.get('/ping', function(req, res) {
+  res.send({message: "pong"});
 });
 
 app.listen(port, () => {
